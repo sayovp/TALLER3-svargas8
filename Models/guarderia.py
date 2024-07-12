@@ -1,9 +1,36 @@
-from perro import Perro
+from Models.boa_constrictor import BoaConstrictor
+from Models.huron import Huron
 
-perro_1 = Perro("Zeus", "Rottweiler", 45.8, 3)
-perro_2 = Perro("Nala", "Golden R.", 8.5, 0)
-perro_3 = Perro("Atila", "Alabai", 58.9, 5)
+class Guarderia():
+    def __init__(self, lista_animales):
+        self.lista_animales = []
 
-print(perro_1.obtener_nombre())
-print(perro_2.obtener_edad())
-print(perro_3.obtener_nombre(), perro_3.obtener_edad())
+    def agregar_animal(self,animal):
+        boaCantidad = 0
+        huronCnatidad =0
+
+        for animalLista in self.lista_animales:
+            if isinstance(animalLista,BoaConstrictor):
+                boaCantidad =+1
+            else:
+                huronCnatidad =+1
+        
+        try:
+            if isinstance(animalLista,BoaConstrictor) and boaCantidad == 2:
+                raise ValueError("maximo de boas")
+            elif isinstance(animalLista,Huron) and huronCnatidad == 2:
+                raise ValueError("maximo de Huron")
+        
+            self.lista_animales.append(animal)
+        except ValueError as e:
+            print(e)
+
+    def alimentar_boa(self, boa):
+        try:
+            if boa in self.lista_animales:
+                boa.comer_raton2()
+            else :
+                raise ValueError("Esta Boa no existe!")
+            return "Éxito"
+        except ValueError as e:
+            print(e)
